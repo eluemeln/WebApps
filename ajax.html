@@ -1,0 +1,100 @@
+<!DOCTYPE>
+
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+
+</head>
+
+<body>
+   <div class="container">
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-6">
+			<h1>Sample table</h1>
+		</div>
+
+	</div>
+	
+	<div class="row">
+		<div class="col-lg-12">
+			<p>You should be able to create this table. By default, the content of the table should be empty. When you click the button, it should fetch data located at http://aimtell.com/quiz/sites.json using AJAX and inset it into the page using HANDLEBARS.</p>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-lg-10 col-sm-10 col-md-10 col-sm-10 "></div>
+		<div class="float-right">
+			<button type="button" class="btn btn-primary" onclick="setup()">Load Data</button>
+		</div>
+	</div>
+
+	<div class="row">&nbsp;</div>
+	<div class="row">
+
+		<div class="col-lg-12">
+		<table id="nduka"  class="table">
+			<thead><tr>
+				<th class="text-center">id</th>
+				<th class="text-center">name</th>
+				<th class="text-center">url</th>
+				</tr>
+			</thead>
+			<div id ="tData">
+				
+			</div>
+			
+		</table>
+		
+
+		</div>
+	  </div>
+  </div>
+
+
+<script type="text/javascript">
+		function setup()
+		{
+			loadJSON("https://aimtell.com/files/sites.json", loadTable,'jsonp');
+		}
+		function loadTable(data)
+		{
+		     //var tbl = document.getElementById('nduka');
+		     var tbrow = document.getElementById("nduka");
+		     
+		    for(var i = 0; i < data.count; i++)
+		    {
+		    	var tbody = document.createElement("tbody");
+		    	tbody.innerHTML += "<tr><td>" + data.sites[i].id + "</td><td>" +
+              	data.sites[i].name + "</td><td>" + data.sites[i].url + "</td></tr>";
+
+              	tbrow.prepend(tbody);
+		    }
+		    
+		}
+
+		function loadJSON(path, success, error) {
+		  var xhr = new XMLHttpRequest();
+		  xhr.onreadystatechange = function () {
+		    if (xhr.readyState === 4) {
+		      if (xhr.status === 200) {
+		        success(JSON.parse(xhr.responseText));
+		      }
+		      else {
+		        error(xhr);
+		      }
+		    }
+		  };
+		  xhr.open('GET', path, true);
+		  xhr.send();
+		}
+
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns ="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src ="Reg_validate.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style2.css">
+
+<link rel="license" href="http://www.opensource.org/licenses/mit-license/">
+<div style  = "background-color:lightblue">
+<h1>welcome to My Registration Page</h1>
+
+<nav align ="left" class = "mynave"> 
+<a href = "index.html" style ="color:white">Homepage</a>
+</nav>
+</div>
+</head>
+
+
+<body align = "center">
+<div style  = "background-color:green; height: 420px">
+
+<form  id = "SignUp" action = "Reg.php"   method = "POST">
+
+<tr><td></td><td><label id="email_msg" class="err_msg"></label></td></tr><br>
+
+<input type="text" placeholder="Enter Email" name="email" id = "email" required /><br>
+
+<tr><td></td><td><label id="uname_msg" class="err_msg"></label></td></tr><br> 
+
+<input type="text" placeholder="Enter username" name="username" id ="uname"  required /><br>
+
+<tr><td></td><td><label id="pswd_msg" class="err_msg"></label></td></tr><br>
+
+<input type="password" placeholder="Enter Password" name ="password" id ="pswd" required /><br>
+
+<tr><td></td><td><label id="pswdr_msg" class="err_msg"></label></td></tr><br>   
+<input type = "password" placeholder="Repeat Password" name = "Password_1" id = "Pswrd" required /><br>
+
+<p color ="blue"><b> By creating an account you agree to our<b> <a href="#">Terms & Privacy</a>.</p>
+
+<button type="submit" class="registerbtn" name="reg_user" value ="SignUp" onclick="SignUpForm()"/>Register</button><br>
+</form>
+</div>
+<div class="container signin">
+<p>have an account? <a href="login.html" align ="bottom">Sign in</a></p><br>
+</div>
+
+
+
+
+</body>
+<div style  = "background-color:black">
+<footer>
+<p>@2020</p>
+</footer>
+</div>
+</html>
+

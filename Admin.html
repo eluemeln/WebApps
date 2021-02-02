@@ -1,0 +1,219 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+		<title>Admin</title>
+    <script type="text/javascript" src="js/validation.js"> </script> 
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="license" href="http://www.opensource.org/licenses/mit-license/">
+
+</head>
+<body>
+    <header id="masthead">
+        <h1>Bazaar <span class="tagline">Admin Page</span></h1>
+	</header>
+<div class="menu">
+	<ul>
+	  <li><a class="active" href="#home">Menu</a></li>
+	  <li><a href="#newSearch">New Search</a></li>
+	  <li><a href="#addProduct" id="addProduct">Add a New Product</a></li>
+	  <li><a href="#editCategory" id="addCategory">Add/Remove Category</a></li>
+	</ul>
+</div>
+<div class="listProducts">
+<br>
+Store Goods Sold Listing
+<div>
+
+<div class="table_Head">
+<table>
+<thead>
+	<tr>
+		<th>Customer_ID</th>
+		<th>CustomerName</th>
+		<th>ContactName</th>
+		<th>City</th>
+		<th>PhoneNumber</th>
+		<th>Country</th>
+	</tr>
+</thead></table></div>
+
+<div class="searchResult">
+ <div id="message"></div>
+
+<table id="result_table">
+
+<tbody id="tbodyResult">
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+
+<div class="foot"> ©2018 Nduka's Online Store ffgergetrgg</div> 
+</div>
+
+ <div id="addProductModal" class="modal">
+
+ 
+  <div class="modal-content">
+  
+  <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Add a Product</h2>
+    </div><br>
+   
+    <div class="modal-body">
+    <form  id="myaddProductForm" method="POST" >
+	 <div class="inputBox" style="padding: 5px;"><label>Product Name</label>
+	 <input type="text" style="background-color: rgb(195, 201, 208); width:250px;height: 25px;" name="productName">
+         <label id="id_pNameErr" class="err_msg"></label>
+        </div>
+	 
+	 <div class="inputBox" style="padding: 20px;"><label>Price</label>
+	 <input type="text" style="background-color: rgb(195, 201, 208); width:110px;height: 25px;"  name="productCode">
+        <label id="id_priceErr" class="err_msg"></label>
+        </div>
+	 
+	 <div class="inputBox" style="padding: 5px; " class="line1"><label>Category</label>
+	<select  id="inlineFormCustomSelect1"  style="background-color: rgb(195, 201, 208);" name="category" >
+        
+					    <option selected value="1">choose</option>
+					    <option value="2">clothes </option>
+					    <option value="3">car </option>
+					    <option value="4">wine</option>
+					  </select>
+        <label id="id_categErr" class="err_msg"></label>
+        </div>	
+		<br>	
+	 <div class="inputBox" style="padding: 5px;"><label>Quantity</label>
+	 <input type="text" style="background-color: rgb(195, 201, 208); width:250px;height: 25px;" name="productName">
+        <label id="id_qtyErr" class="err_msg"></label>
+        </div>
+	 
+       <div class="inputBox" style="padding: 5px;"><label>Image</label>
+	 <input type="file"  name="productImage">
+        <label id="id_imgErr" class="err_msg"></label>
+        </div>
+        
+	 <div><label>Description</label>
+				<textarea type="text" id="pDescrip" name="notes" style="border:1px dashed; width: 700px; background-color: rgb(195, 201, 208);" 
+				  placeholder="Please write other Options.."></textarea>
+         <div id="charNum"></div><label id="id_pDesErr" class="err_msg"></label>
+			</div>
+        <p><input type="submit" value="Add Product" class="btn" name= "submit"/></p>
+        </form>
+    </div>
+  </div>
+
+</div>
+    
+    
+    
+    <div id="addCategoryModal" class="modal">
+
+ 
+  <div class="modal-content">
+  
+  <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Add a Product</h2>
+    </div><br>
+   
+    <div class="modal-body">
+        <form  id="myaddCategoryForm" method="POST" >
+         <div class="inputBox" style="padding: 5px;"><label>Category Name</label>
+         <input type="text" class="form-control productname" name="" style="background-color: rgb(195, 201, 208); width:250px;height: 25px;" name="productName" ><label id="id_cNameErr" class="err_msg"></label></div>
+        
+         <div><label>Category Description</label>
+                    <textarea class="form-control" type="text" name="notes" style="border:1px dashed; width: 700px; background-color: rgb(195, 201, 208);" 
+                      placeholder="Please write other Options.."></textarea>
+             <label id="id_cDesErr" class="err_msg"></label>
+        </div>
+        <p><input type="submit" value="Save Category" class="btn" name= "submit"/></p>
+        </form>
+        <br><br><br><br>
+        <table class="shopping-cart">
+			  <thead>
+				<tr>
+					<th scope="col">Category Number</th>
+					<th scope="col">Category Name</th>
+                    <th scope="col"></th>
+				</tr>
+			  </thead>
+			  <tbody>
+                 <tr><td class='pname'>1</td><td class='pqty'>wine</td><td class='pdelete'><a  data-product='wine'>&times;</a></td></tr>
+			  
+                  <tr><td class='pname'>1</td><td class='pqty'>Clothing</td><td class='pdelete'><a  data-product='clothing'>&times;</a></td></tr>
+                  
+                  <tr><td class='pname'>1</td><td class='pqty'>Cars</td><td class='pdelete'><a  data-product='Cars'>&times;</a></td></tr>
+			  
+			  
+			  </tbody>
+			</table>
+        
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Get the modal for add product
+var addProduct = document.getElementById('addProductModal');
+    
+// Get the button that opens the modal for add product
+var btn1 = document.getElementById("addProduct");
+
+// Get the <span> element that closes the modal for add product
+var addProductSpan = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal for add product
+btn1.onclick = function() {
+    addProduct.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal for add product
+addProductSpan.onclick = function() {
+    addProduct.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal for add product, close it
+window.onclick = function(event) {
+    if (event.target == addProduct) {
+        addProduct.style.display = "none";
+    }
+}
+
+
+// Get the modal for add category
+var addCategory = document.getElementById('addCategoryModal');
+    
+// Get the button that opens the modal for add category
+var btn2 = document.getElementById("addCategory");
+    
+        // Get the <span> element that closes the modal for add category
+var addCategorySpan = document.getElementsByClassName("close")[1];
+    
+// When the user clicks the button, open the modal for add category
+btn2.onclick = function() {
+    addCategory.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal for add categoty
+addCategorySpan.onclick = function() {
+    addCategory.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal for add category close it
+window.onclick = function(event) {
+    if (event.target == addCategory) {
+        addCategory.style.display = "none";
+    }
+}
+</script>
+<script type = "text/javascript"  src = "js/admin_Dr.js" ></script>
+</body>
+</html>
+<!-- end admin page -->

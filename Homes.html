@@ -1,0 +1,70 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <div id="hello_container" class=""></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   <script type="text/babel">
+    class App extends React.Component {
+  state = {
+    isLoading: true,
+    homes: [],
+    error: null
+  };
+
+  fetchomes() {
+    fetch(`https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/homes`)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          homes: data,
+          isLoading: false,
+        })
+      )
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  componentDidMount() {
+    this.fetchomes();
+  }
+  render() {
+    const { isLoading, homes, error } = this.state;
+    return (
+      <React.Fragment>
+        <h1>Homes</h1>
+        {error ? <p>{error.message}</p> : null}
+        {!isLoading ? (
+          homes.map(home => {
+            const { id, communityId, price, area, type } = home;
+            return (
+              <div key={id}>
+                <p>ID: {id}</p>
+                <p>Community ID: {id}</p>
+                <p>Price: {price}</p>
+                <p>area: {area}</p>
+                <p>Type: {type} </p>
+                <hr />
+              </div>
+            );
+          })
+        ) : (
+          <h3>Loading...</h3>
+        )}
+      </React.Fragment>
+    );
+  }
+}
+
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+  </script>
+  </head>
+  <body>
+    
+    <div id="root"></div>
+  </body>
+</html>
